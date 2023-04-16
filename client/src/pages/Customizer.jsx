@@ -47,6 +47,19 @@ const Customizer = () => {
     }
   }
 
+  const handleSubmit = async (type) => {
+    if(!prompt) return alert("Please enter a prompt");
+
+    try{
+      //Call our backend to generate an ia image
+    }catch (error) {
+      alert(error)
+    } finally {
+      setGeneratingImg(false);
+      setActiveEditorTab("");
+    }
+  }
+
   const handleDecals = (type, result) => {
     const decalType = DecalTypes[type];
 
@@ -70,6 +83,15 @@ const Customizer = () => {
         state.isFullTexture = false;
         break;
     }
+
+    //after setting the state, activeFilterTab is updated
+
+    setActiveFilterTab((prevState) => {
+      return {
+        ...prevState,
+        [tabName]: !prevState[tabName]
+      }
+    })
   }
 
   const readFile = (type) => {
