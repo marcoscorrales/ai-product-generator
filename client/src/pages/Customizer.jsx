@@ -9,8 +9,10 @@ import { downloadCanvasToImage, reader } from '../config/helpers';
 import { EditorTabs, FilterTabs, DecalTypes } from '../config/constants';
 import { fadeAnimation, slideAnimation } from '../config/motion';
 import { AIPicker, ColorPicker, CustomButton, FilePicker, Tab } from '../components';
+import { useTranslation } from 'react-i18next';
 
 const Customizer = () => {
+  const { t } = useTranslation();
   const snap = useSnapshot(state);
 
   const [file, setFile] = useState('');
@@ -146,7 +148,7 @@ const Customizer = () => {
           >
             <CustomButton 
               type="filled"
-              title="Go Back"
+              title={t("buttonGoBack")}
               handleClick={() => state.intro = true}
               customStyles="w-fit px-4 py-2.5 font-bold text-sm"
             />

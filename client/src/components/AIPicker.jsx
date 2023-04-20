@@ -1,11 +1,13 @@
 import React from 'react'
 import CustomButton from './CustomButton'
+import { useTranslation } from 'react-i18next';
 
 const AIPicker = ({prompt, setPrompt, generatingImg, handleSubmit}) => {
+  const { t } = useTranslation();
   return (
     <div className='aipicker-container'>
       <textarea 
-        placeholder='Ask AI...'
+        placeholder={t("textAi1")}
         rows={5}
         value={prompt}
         onChange={(e) => setPrompt(e.target.value)}
@@ -15,21 +17,21 @@ const AIPicker = ({prompt, setPrompt, generatingImg, handleSubmit}) => {
         {generatingImg ? (
           <CustomButton
             type='outline'
-            title='Asking AI...'
+            title={t("textAi2")}
             customStyles='text-xs'
           />
         ) : (
           <>
             <CustomButton
               type='outline'
-              title='AI Logo'
+              title={t("buttonAiLogo")}
               handleClick={() => handleSubmit('logo')}
               customStyles='text-xs'
             />
 
             <CustomButton
               type='filled'
-              title='AI Full'
+              title={t("buttonAiFull")}
               handleClick={() => handleSubmit('full')}
               customStyles='text-xs'
             />

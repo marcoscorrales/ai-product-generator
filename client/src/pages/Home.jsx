@@ -9,10 +9,13 @@ import {
   headTextAnimation,
   slideAnimation
 } from '../config/motion';
+import { useTranslation } from 'react-i18next';
 
 import React from 'react'
+import LanguageButton from '../components/LanguageButton';
 
 const Home = () => {
+  const { t } = useTranslation();
   const snap = useSnapshot(state);
 
   return (
@@ -20,17 +23,21 @@ const Home = () => {
       {snap.intro && (
         <motion.section className='home' {...slideAnimation('left')}>
           <motion.header {...slideAnimation("down")}>
-            <img
+            <div className='flex gap-4 justify-between'>
+              <img
               src='./threejs.png'
               alt="logo"
               className="w-8 h-8 object-contain"
             />
+            <LanguageButton />
+            </div>
+            
           </motion.header>
 
           <motion.div className="home-content" {...headContainerAnimation}>
             <motion.div {...headContentAnimation}>
               <h1 className='head-text'>
-                LET'S <br className='xl:block hidden'/> DO IT.
+              {t("title1")} <br className='xl:block hidden'/> {t("title2")}
               </h1>
             </motion.div>
             <motion.div 
@@ -38,12 +45,12 @@ const Home = () => {
               className="flex flex-col gap-5"
               >
               <p className='max-w-md font-normal text-gray-600 text-base'>
-                Create your unique and exclusive shirt with or brand-new 3D customization tool. <strong>Unleash your imagination</strong>{" "} and define your own style.
+              {t("subtitle1")}<strong>{t("subtitle2")}</strong>{' '} {t("subtitle3")}
               </p>
 
               <CustomButton
                 type='filled'
-                title='Customize It'
+                title={t("buttonCustomize")}
                 handleClick={() => state.intro = false}
                 customStyles='w-fit px-4 py-2.5 font-bold text-sm'
               />
